@@ -1,0 +1,202 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/* Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Custom scrollbar - Light Mode */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #403CCF;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5B59E8;
+}
+
+/* Custom scrollbar - Dark Mode */
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #5B59E8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6e6bf0;
+}
+
+/* Base styles */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@layer base {
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  button[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+/* === Design System Utilities (inspirado no neosale-site) === */
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #5B59E8, #403CCF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, #2d2a9c, #403CCF);
+}
+
+/* Animation utilities */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(64, 60, 207, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(64, 60, 207, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Toast animations */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.animate-toast-in {
+  animation: toast-in 0.3s ease-out forwards;
+}
+
+.animate-toast-out {
+  animation: toast-out 0.25s ease-in forwards;
+}
+
+/* Primary color utilities */
+.bg-primary {
+  background-color: #403CCF !important;
+}
+
+.text-primary {
+  color: #403CCF !important;
+}
+
+.border-primary {
+  border-color: #403CCF !important;
+}
+
+.hover\:bg-primary\/5:hover {
+  background-color: rgba(64, 60, 207, 0.05) !important;
+}
+
+.hover\:border-primary:hover {
+  border-color: #403CCF !important;
+}
+
+.group:hover .group-hover\:text-primary {
+  color: #403CCF !important;
+}
+
+.focus\:ring-primary:focus {
+  --tw-ring-color: #403CCF !important;
+}
+
+/* Mobile App Styles - Safe Areas and Viewport */
+@supports (padding: env(safe-area-inset-top)) {
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top), 0.5rem);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+  }
+}
+
+/* Mobile viewport height fix */
+@media (max-width: 768px) {
+  html {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
+  body {
+    position: relative;
+  }
+
+  .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}

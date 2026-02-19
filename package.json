@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@neosale/ui": "file:../neosale-ui",
+    "@neosale/ui": "file:./vendor/neosale-ui",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
